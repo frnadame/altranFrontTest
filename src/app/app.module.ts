@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
 import { BrastlewarkComponent } from './brastlewark/brastlewark.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { BrastlewarkComponent } from './brastlewark/brastlewark.component';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
   ],

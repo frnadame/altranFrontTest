@@ -8,7 +8,7 @@ import { Brastlewark } from './brastlewark';
 })
 
 export class BrastlewarkComponent implements OnInit {
-  @Input() b: Brastlewark;
+  @Input() citizen: Brastlewark;
 
   constructor( ) { }
 

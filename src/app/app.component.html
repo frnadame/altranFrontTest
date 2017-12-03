@@ -1,12 +1,14 @@
 <nav class="col-xs-12 center">
   <div class="input-group col-xs-6">
-    <input type="search" class="form-control" placeholder="Search for..." aria-label="Search for...">
+    <input type="search" class="form-control" placeholder="Search for..." [value]="searchStr" (change)="searchStr = $event.target.value">
     <span class="input-group-btn">
-      <button class="btn btn-secondary" type="button"><i class="glyphicon glyphicon-search"></i></button>
+      <button class="btn btn-secondary" type="button" (click)="search()">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
     </span>
   </div>
 </nav>
 
 <div class="col-xs-12 no-padding" id="main">
-    <app-brastlewark *ngFor="let item of data" [b]="item"></app-brastlewark>
+    <app-brastlewark *ngFor="let item of data" [citizen]="item"></app-brastlewark>
 </div>

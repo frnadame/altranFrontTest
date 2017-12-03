@@ -2,28 +2,34 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Component, Optional } from '@angular/core';
 import { Http } from '@angular/http';
 import { Brastlewark} from './brastlewark/brastlewark';
+import { HttpService } from './services/http.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [HttpService]
 })
 export class AppComponent implements OnInit {
   data: Brastlewark[];
+  searchStr: string;
+  limit: 5;
 
   constructor(
-    private http: Http,
+    private service: HttpService
   ) { }
 
   ngOnInit(): void {
+    this.searchStr = '';
     // Make the HTTP request:
-    this.http.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json').subscribe(data => {
-      this.data = [];
-      const jsonParsed = JSON.parse(data['_body']).Brastlewark;
-      for (let index = 0; index < jsonParsed.length; index++) {
-        this.data.push(new Brastlewark(jsonParsed[index]));
-      }
-      console.log(this.data);
-    });
+    this.search();
   }
+
+  search = function() {
+    this.service.getData().subscribe(res => {
+      this.data = res.Brastlewark.filter(x => x.name.search(this.searchStr) > -1);
+      console.log(res.Brastlewark.filter(x => x.name.search(this.searchStr) > -1));
+    });
+  };
+
 }
