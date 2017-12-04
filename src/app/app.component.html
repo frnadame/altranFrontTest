@@ -10,5 +10,19 @@
 </nav>
 
 <div class="col-xs-12 no-padding" id="main">
-    <app-brastlewark *ngFor="let item of data" [citizen]="item"></app-brastlewark>
+  <app-brastlewark *ngFor="let item of showingData" [citizen]="item"></app-brastlewark>
 </div>
+
+
+<div class="overlayLoading" *ngIf="loading">
+  <i class="glyphicon glyphicon-repeat fast-right-spinner"></i> LOADING...
+</div>
+
+<footer>
+  <select [(ngModel)]="limit" (change)="search()">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="-1">All</option>
+  </select>
+</footer>
