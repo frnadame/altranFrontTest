@@ -1,17 +1,21 @@
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/observable';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { Brastlewark } from '../brastlewark/brastlewark';
 
 
 @Injectable()
 export class HttpService {
 
     constructor(
-        private http: Http
+        private client: Http
     ) {}
 
     getData = function() {
-        return this.http.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
-        .map(res => res.json());
+        return this.client.get('https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json')
+        .map(
+            res => res.json()
+        );
     };
 }

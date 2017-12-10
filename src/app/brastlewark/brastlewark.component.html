@@ -1,11 +1,18 @@
-<div class="col-xs-12 no-padding rowData">
-  <div class="no-padding hidden-xs col-sm-2">
-    <img alt="{{citizen.name}}" src="{{citizen.thumbnail}}" />
-  </div>
-  <div class="no-padding col-sm-10">
-    <div class="col-xs-12">
-      <h4>{{citizen.name}}</h4>
-      <span>Age: {{citizen.age}}</span>
-    </div>
+<div class="col-xs-12 no-padding citizen-box" [ngStyle]="{'background-image': citizen.getThumbnail()}">
+  <div class="col-xs-12 info">
+    <h4>{{citizen.name}}</h4>
+    <p>Age: {{citizen.age}}</p>
+    <p>Hair Color: {{citizen.hair_color}}</p>
+    <p>Weight: {{citizen.weight}} - Height: {{citizen.height}}</p>
+    <ul class="col-xs-6">
+      <li *ngFor="let friend of citizen.friends">
+        {{friend}}
+      </li>
+    </ul>
+    <ul class="col-xs-6">
+      <li *ngFor="let friend of citizen.professions">
+        {{friend}}
+      </li>
+    </ul>
   </div>
 </div>

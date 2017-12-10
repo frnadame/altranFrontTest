@@ -14,10 +14,14 @@ export class Brastlewark {
         this.name = b.name;
         this.thumbnail = b.thumbnail;
         this.age = b.age;
-        this.weight = b.weight;
-        this.height = b.height;
+        this.weight = parseFloat(b.weight.toFixed(2));
+        this.height = parseFloat(b.height.toFixed(2));
         this.hair_color = b.hair_color;
         this.professions = b.professions;
         this.friends = b.friends;
     }
+
+    public getThumbnail= function () {
+        return 'url("' + this.thumbnail + '")';
+    };
 }

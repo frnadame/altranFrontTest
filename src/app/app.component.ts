@@ -1,6 +1,5 @@
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Component, Optional } from '@angular/core';
-import { Http } from '@angular/http';
 import { Brastlewark } from './brastlewark/brastlewark';
 import { HttpService } from './services/http.service';
 
@@ -16,7 +15,7 @@ export class AppComponent implements OnInit {
   searchStr: string;
   loading: boolean;
   start = 0;
-  limit = 10;
+  limit = 20;
 
   constructor(
     private service: HttpService
@@ -29,6 +28,9 @@ export class AppComponent implements OnInit {
     this.loading = true;
     // Make the HTTP request:
     this.service.getData().subscribe(res => {
+      for (let i = 0; i < res.Brastlewark.length; i++) {
+        res.Brastlewark[i] = new Brastlewark(res.Brastlewark[i]);
+      }
       this.data = res.Brastlewark;
       this.search();
     });
@@ -39,7 +41,7 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.showingData = this.data.filter(
-        x => x.name.toLowerCase().search(this.searchStr.toLowerCase()) > -1
+        citizen => citizen.name.toLowerCase().search(this.searchStr.toLowerCase()) > -1
       ).slice(this.start, this.limit);
       this.loading = false;
     }, 100);
